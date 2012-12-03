@@ -15,6 +15,14 @@ class Yql
     
     JSON.parse(RestClient.get @url_service)
   end
+  
+  def self.get_countries id_continet
+    yql = Yql.new
+    yql.query = "select * from geo.countries where place=#{id_continet}"
+    @url_service = yql.generate_url_service
+    
+    JSON.parse(RestClient.get @url_service)
+  end
 
   def generate_url_service
     URI.escape("#{@url_base}?q=#{@query}&format=#{@format}")

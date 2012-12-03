@@ -1,6 +1,7 @@
 Yqlrails::Application.routes.draw do
   get "home/index"
   match "ajax/get-continets" => "ajax#getContinets"
+  match "ajax/get-countries" => "ajax#getCountries"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
