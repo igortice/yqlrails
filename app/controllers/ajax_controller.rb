@@ -6,4 +6,8 @@ class AjaxController < ApplicationController
   def getCountries
     render :json => Yql.get_countries(params[:id].to_i)
   end
+  
+  def getStates
+    render :json => Yql.get_states(params[:id].to_i)
+  end
 end

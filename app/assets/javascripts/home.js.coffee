@@ -30,6 +30,7 @@ jQuery ->
       setHtmlDadosContinents dados
     error       : (data, textStatus, jqXHR) ->
       
+# parte países
 jQuery ->
   setHtmlDadosPais = (dados) ->
     $("blockquote#countries p span").html(dados.quantidade)
@@ -44,8 +45,6 @@ jQuery ->
     id_continet = $(this).val()
     
     if id_continet
-      $("blockquote#countries").fadeIn(1000)
-      
       $.ajax  'ajax/get-countries',
         type: 'POST'
         data: {id: id_continet}
@@ -53,6 +52,34 @@ jQuery ->
         success     : (data, textStatus, jqXHR) ->
           dados = getDadosJson data
           setHtmlDadosPais dados
-        error       : (data, textStatus, jqXHR) ->
+        complete    : () ->
+          $("blockquote#countries").fadeIn(1000)
     else
-      $("blockquote#countries").hide()
+      $("blockquote#countries, blockquote#states").hide()
+      
+# parte países
+jQuery ->
+  setHtmlDadosCidade = (dados) ->
+    $("blockquote#states p span").html(dados.quantidade)
+    
+    html_select = "<option value=''>Selecione uma Cidade</option>"
+    for i in dados.locais
+      html_select += "<option value='" + i["id"] + "'>" + i["nome"] + "</option>"
+      
+    $("blockquote#states select").html(html_select)
+    
+  $("blockquote#countries select").change ->
+    id_countries = $(this).val()
+    
+    if id_countries
+      $.ajax  'ajax/get-states',
+        type: 'POST'
+        data: {id: id_countries}
+        beforeSend  : () ->
+        success     : (data, textStatus, jqXHR) ->
+          dados = getDadosJson data
+          setHtmlDadosCidade dados
+        complete    : () ->
+          $("blockquote#states").fadeIn(1000)
+    else
+      $("blockquote#states").hide()
