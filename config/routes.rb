@@ -1,6 +1,6 @@
 Yqlrails::Application.routes.draw do
   get "home/index"
-  match "ajax/get-continets"  => "ajax#getContinets"
+  match "ajax/get-continents"  => "ajax#getContinents"
   match "ajax/get-countries"  => "ajax#getCountries"
   match "ajax/get-states"     => "ajax#getStates"
 
