@@ -1,13 +1,13 @@
 Yqlrails::Application.routes.draw do
   get "home/index"
-  match "ajax/get-continents"  => "ajax#getContinents"
+  match "ajax/get-continents" => "ajax#getContinents"
   match "ajax/get-countries"  => "ajax#getCountries"
   match "ajax/get-states"     => "ajax#getStates"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  # Sample of regular route:
+  # Sample of regular route:q
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 

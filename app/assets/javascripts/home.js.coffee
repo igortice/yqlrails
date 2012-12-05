@@ -28,11 +28,13 @@ ajaxRequestPost = (url, obj, data_hash) ->
     type: 'POST'
     data: data_hash
     beforeSend  : () ->
+      $("blockquote#carregando").show()
     success     : (data) ->
       dados = getDadosJson(data)
       setHtmlForSelect(obj, dados)
     complete    : () ->
-      obj.fadeIn(500)
+      $("blockquote#carregando").hide()
+      obj.fadeIn(250)
 
 
 # parte continentes
