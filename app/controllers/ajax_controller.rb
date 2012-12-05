@@ -1,6 +1,5 @@
 class AjaxController < ApplicationController
   def getContinents
-    sleep 10
     Rails.cache.write('continentes', Yql.get_continents) unless Rails.cache.exist? 'continentes'
 
     render :json => Rails.cache.read('continentes')
